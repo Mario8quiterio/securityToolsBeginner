@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenSIEM - MalicousIp</title>
+    <link rel="stylesheet" href="main.css">
+    <script data-main = "text/javascript" src="Scripts/rand.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header id = "navBar">
+        <div class = "container">
+            <ul class="nav" >
+                <li id = "lol" class = "active"><a href="maliciousIp" >Malicous IP's</a></li>
+                <li id = "lol"><a href="#">HashFile</a></li>
+                <li id = "lol"><a href="#">TBD</a></li>  
+                <li id = "lol"><a href="#">API KEY</a></li>
+
+                <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" id = "lol" class="bi bi-lock" viewBox="0 0 16 16">
+                    <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                  </svg>
+                </a>
+            </ul>
+            
+        </div>
+    </header>
+    <div class = "titleIpCon">
+        <p id="titleIp">Flagged Ip's</p>
+        <div class = "temp">
+            <ul class = "optionNav">
+                <li id = "lol2" class = "tro1" onclick="flaggedOptions('csv')"><a href="#" onclick="flaggedOptions('csv')">CSV</a></li>  
+                <li id = "lol2" class = "tro2" onclick="flaggedOptions('txt')"><a href="#" onclick="flaggedOptions('txt')">TXT</a></li>
+                <li id = "lol2" class = "tro3" onclick="flaggedOptions('input')"><a href="#" onclick="flaggedOptions('input')">INPUT</a></li>  
+                <li id = "lol2" class = "tro4"><a href="#">SINGLE</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class = "optionCon">
+        <div class = "UploadCon" id = "csv">
+            <input type="file" id="fileUpload" />
+            <div class = "deliCon">
+                <label for="deli" id = "deliText"> Delimeter:</label>
+                <select name="deli" id="delimeter">
+                    <option value=",">,</option>
+                    <option value=";">;</option>
+                </select>
+            </div>
+            <input type="button" id="upload" value="Upload" onclick="Upload()" />
+        </div>
+
+        <div class = "UploadCon" id = "txt">
+            <input type="file" id="fileUpload" />
+            <div class = "deliCon">
+                <label for="deli" id = "deliText"> Delimeter2:</label>
+                <select name="deli" id="delimeter">
+                    <option value=",">,</option>
+                    <option value=";">;</option>
+                </select>
+            </div>
+            <input type="button" id="upload" value="Upload" onclick="Upload()" />
+        </div>
+
+        <div class = "UploadCon" id = "input">
+            <input type="text">
+            <input type="button" id="upload" value="Upload" onclick="Upload()" />
+        </div>
+
+    </div>
+    <br><br>
+
+    <div class = "TableCon">
+        <div class = "buttonCons">
+            <button id = "downloadButt" onclick="downloadCSV()">Press me</button>
+            <button id = "downloadButt" onclick="downloadCSV()">Save</button>
+        </div>
+        <div id="dvCSV"></div>
+    </div>
+    
+</body>
+</html>
