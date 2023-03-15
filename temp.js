@@ -11,13 +11,16 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
   });
-app.get('', (_, resp) =>{
-  resp.sendFile('/Users/marioquiterio/SIEMPROJECT/templates/index.html')
+app.get('/home', (_, resp) =>{
+  resp.sendFile(__dirname + '/templates/index.html')
 });
 app.get('/maliciousIp', (_, resp) =>{
-  resp.sendFile('/Users/marioquiterio/SIEMPROJECT/templates/maliciousIp.html')
+  resp.sendFile(__dirname + '/templates/maliciousIp.html')
+});
+app.get('/apiKey', (_, resp) =>{
+  resp.sendFile(__dirname + '/templates/apiKey.html')
 });
 
 app.use(cors());
 
-app.listen(8080)
+app.listen(8080, "0.0.0.0")

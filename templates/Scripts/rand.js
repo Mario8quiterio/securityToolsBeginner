@@ -1,3 +1,36 @@
+function apiOnload(){
+    var apiK = localStorage.getItem("apiKey");
+    if(localStorage.getItem("apiKey")){
+        document.getElementById("tInputapi").setAttribute('value', apiK);
+    }
+}
+function saveAPI(){
+    var apiK = document.getElementById("tInputapi").value;
+    localStorage.setItem("apiKey", apiK);
+  };
+function checkIng(ipList){
+    var er = [];
+    apiK = localStorage.getItem("apiKey");
+    const options = {
+        method: 'GET',
+        url: 'https://www.virustotal.com/api/v3/ip_addresses/' + '8.8.8.8',
+        headers: {
+            accept: 'application/json',
+            'x-apikey': apiK
+        }
+    };
+    
+    axios
+        .request(options)
+        .then(function (response) {
+            displayM(ipList);
+        })
+        .catch(function (error) {
+            console.error("YOO", error);
+        });
+    
+    
+};
 function flaggedOptions(option){
     var csv = document.getElementById("csv");
     var txt = document.getElementById("txt");
@@ -35,7 +68,8 @@ function flaggedOptions(option){
 function downloadCSV(){
     console.log("SUCCESS");
 };
-function lookUpIp(ipS, ipList) {
+function lookUpIp(ipS, ipList, er) {
+    apiK = localStorage.getItem("apiKey");
     var info, maliciousCount;
     var temp = [], temp2 = [];
     for(var i = 0; i < ipS.length; i++){
@@ -45,7 +79,7 @@ function lookUpIp(ipS, ipList) {
             url: 'https://www.virustotal.com/api/v3/ip_addresses/' + ipS[i],
             headers: {
               accept: 'application/json',
-              'x-apikey': 'e619f420438f65d4f8fed0e39ffab33ba9bac858fb1d2d734f06c2aeca9a4fd0'
+              'x-apikey': apiK
             }
           };
         
@@ -68,6 +102,7 @@ function lookUpIp(ipS, ipList) {
     temp.push("Ip Address");
     temp.push("Flag Count");
     ipList.unshift(temp);
+   
 };
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -90,17 +125,21 @@ async function displayM(ipList) {
     var dvCSV = document.getElementById("dvCSV");
     dvCSV.innerHTML = "";
     dvCSV.appendChild(table);
-    var x = document.getElementById("downloadButt");
-    x.style.display = "block";
-    
+    var x = document.getElementsByClassName("buttonCons");
+    x[0].style.display = "flex";
 
 
 };
 function Upload() {
+    if(!localStorage.getItem("apiKey")){
+        alert("MAKE SURE YOU GOT API KEY");
+        return;
+    }
     console.log("YUP YUP");
     var fileUpload = document.getElementById("fileUpload");
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
     var deli = document.getElementById("delimeter").value;
+    var er = [];
     const ipS = [];
     const ipList = [];
     if (regex.test(fileUpload.value.toLowerCase())) {
@@ -120,8 +159,9 @@ function Upload() {
                     }
                 }
                 console.log(ipS);
-                lookUpIp(ipS, ipList);
-                displayM(ipList);
+                lookUpIp(ipS, ipList, er);
+                checkIng(ipList);
+                //displayM(ipList);
                 //buttonCreate();
                 
             }

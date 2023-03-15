@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NOTSURE</title>
+    <title>NOTSURE - apiKey</title>
     <link rel="stylesheet" href="main.css">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script data-main = "text/javascript" src="Scripts/rand.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="apiOnload()">
     <header id = "navBar">
         <div class = "container">
             <ul class="nav" >
@@ -27,11 +28,15 @@
     </header>
 
     <div class = "mainTitleCon">
-        <h1 class = "mainTitle">HELLO WORLD</h1>
-
-
+        <h1 class = "mainTitle">API KEY</h1>
     </div>
 
+    <div class = "apiCon">
+        <div class = "textApiInput">
+            <input type="text" id = "tInputapi" value="">
+            <input type="button" id="apiBut" value="+" onclick="saveAPI()" />
+        </div>
+    </div>
 
 </body>
 </html>
